@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 古诗词问答系统{% endblock %}
+
+{% block content %}
+<!-- Hero区域 -->
+<section class="hero gradient-bg text-white rounded-lg mb-12">
+    <div class="hero-content text-center">
+        <div class="max-w-md">
+            <h1 class="text-5xl font-bold mb-4">
+                <i class="fas fa-scroll mr-3"></i>古诗词问答系统
+            </h1>
+            <p class="text-xl mb-8">基于知识图谱的智能问答平台，让古典诗词在现代科技中焕发新生</p>
+            {% if not current_user.is_authenticated %}
+                <div class="space-x-4">
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-user-plus mr-2"></i>立即注册
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline btn-lg">
+                        <i class="fas fa-sign-in-alt mr-2"></i>用户登录
+                    </a>
+                </div>
+            {% else %}
+                <a href="{{ url_for('KGQA_Poetry') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-robot mr-2"></i>开始问答
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- 功能特性 -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold text-center mb-8">系统特色</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card card-shadow bg-white">
+            <div class="card-body items-center text-center">
+                <div class="text-primary text-4xl mb-4">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="card-title">知识图谱驱动</h3>
+                <p>基于Neo4j图数据库存储古诗词知识，构建完整的诗人、作品、朝代关系网络</p>
+            </div>
+        </div>
+        
+        <div class="card card-shadow bg-white">
+            <div class="card-body items-center text-center">
+                <div class="text-secondary text-4xl mb-4">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="card-title">智能问答</h3>
+                <p>采用FastText和BERT模型进行意图识别和命名实体识别，准确理解用户问题</p>
+            </div>
+        </div>
+        
+        <div class="card card-shadow bg-white">
+            <div class="card-body items-center text-center">
+                <div class="text-accent text-4xl mb-4">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="card-title">数据丰富</h3>
+                <p>从古诗文网爬取大量诗词数据，涵盖多个朝代、众多诗人及其代表作品</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 示例问题 -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold text-center mb-8">您可以这样问</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card bg-white card-shadow">
+            <div class="card-body">
+                <h3 class="card-title text-primary">
+                    <i class="fas fa-user mr-2"></i>关于诗人
+                </h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mr-2"></i>
+                        <span>李白是哪个朝代的诗人？</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mr-2"></i>
+                        <span>杜甫的代表作品有哪些？</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mr-2"></i>
+                        <span>苏轼的诗歌风格如何？</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card bg-white card-shadow">
+            <div class="card-body">
+                <h3 class="card-title text-secondary">
+                    <i class="fas fa-scroll mr-2"></i>关于作品
+                </h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mr-2"></i>
+                        <span>《静夜思》的作者是谁？</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mr-2"></i>
+                        <span>《春望》表达了什么情感？</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-chevron-right text-gray-400 mr-2"></i>
+                        <span>《水调歌头》的创作背景是什么？</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 技术架构 -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold text-center mb-8">技术架构</h2>
+    <div class="card bg-white card-shadow">
+        <div class="card-body">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                    <div class="text-3xl mb-2">
+                        <i class="fab fa-python text-blue-500"></i>
+                    </div>
+                    <h4 class="font-semibold">Python</h4>
+                    <p class="text-sm text-gray-600">后端开发</p>
+                </div>
+                <div>
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-flask text-green-500"></i>
+                    </div>
+                    <h4 class="font-semibold">Flask</h4>
+                    <p class="text-sm text-gray-600">Web框架</p>
+                </div>
+                <div>
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-project-diagram text-purple-500"></i>
+                    </div>
+                    <h4 class="font-semibold">Neo4j</h4>
+                    <p class="text-sm text-gray-600">图数据库</p>
+                </div>
+                <div>
+                    <div class="text-3xl mb-2">
+                        <i class="fas fa-database text-orange-500"></i>
+                    </div>
+                    <h4 class="font-semibold">MySQL</h4>
+                    <p class="text-sm text-gray-600">关系数据库</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 系统统计 -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold text-center mb-8">系统数据</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="stat bg-primary text-white rounded-lg">
+            <div class="stat-figure text-secondary">
+                <i class="fas fa-users text-3xl"></i>
+            </div>
+            <div class="stat-title text-white">注册用户</div>
+            <div class="stat-value text-white">{{ user_count or '0' }}</div>
+            <div class="stat-desc text-white">系统用户总数</div>
+        </div>
+        
+        <div class="stat bg-secondary text-white rounded-lg">
+            <div class="stat-figure text-primary">
+                <i class="fas fa-question-circle text-3xl"></i>
+            </div>
+            <div class="stat-title text-white">问答次数</div>
+            <div class="stat-value text-white">{{ qa_count or '0' }}</div>
+            <div class="stat-desc text-white">累计问答次数</div>
+        </div>
+        
+        <div class="stat bg-accent text-white rounded-lg">
+            <div class="stat-figure text-white">
+                <i class="fas fa-book text-3xl"></i>
+            </div>
+            <div class="stat-title text-white">诗词数据</div>
+            <div class="stat-value text-white">{{ poetry_count or '1000+' }}</div>
+            <div class="stat-desc text-white">古诗词知识条目</div>
+        </div>
+    </div>
+</section>
+{% endblock %}

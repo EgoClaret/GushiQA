@@ -1,0 +1,58 @@
+[
+  {
+    "name": "李白",
+    "dynasty": "唐代",
+    "gender": "男",
+    "birth_year": 701,
+    "death_year": 762,
+    "hometown": "陇西成纪（今甘肃天水）",
+    "description": "字太白，号青莲居士，唐代伟大的浪漫主义诗人，被后人誉为'诗仙'。",
+    "famous_works": [
+      "静夜思",
+      "将进酒",
+      "蜀道难",
+      "梦游天姥吟留别"
+    ]
+  },
+  {
+    "name": "孟浩然",
+    "dynasty": "唐代",
+    "gender": "男",
+    "birth_year": 689,
+    "death_year": 740,
+    "hometown": "襄州襄阳（今湖北襄阳）",
+    "description": "字浩然，号孟山人，唐代著名的山水田园诗人，与王维并称'王孟'。",
+    "famous_works": [
+      "春晓",
+      "过故人庄",
+      "宿建德江"
+    ]
+  },
+  {
+    "name": "王之涣",
+    "dynasty": "唐代",
+    "gender": "男",
+    "birth_year": 688,
+    "death_year": 742,
+    "hometown": "晋阳（今山西太原）",
+    "description": "字季凌，唐代著名诗人，以描写边塞风光著称。",
+    "famous_works": [
+      "登鹳雀楼",
+      "凉州词"
+    ]
+  },
+  {
+    "name": "王维",
+    "dynasty": "唐代",
+    "gender": "男",
+    "birth_year": 701,
+    "death_year": 761,
+    "hometown": "河东蒲州（今山西运城）",
+    "description": "字摩诘，号摩诘居士，唐代著名诗人、画家，有'诗佛'之称。",
+    "famous_works": [
+      "相思",
+      "山居秋暝",
+      "使至塞上"
+    ]
+  }
+]

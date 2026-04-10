@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}用户登录 - 古诗词问答系统{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center">
+    <div class="card w-full max-w-md bg-white card-shadow">
+        <div class="card-body">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold">用户登录</h2>
+                <p class="text-gray-600">欢迎回到古诗词问答系统</p>
+            </div>
+            
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.hidden_tag() }}
+                
+                <!-- 邮箱 -->
+                <div class="form-control mb-4">
+                    <label class="label" for="email">
+                        <span class="label-text">邮箱地址</span>
+                    </label>
+                    <input type="email" 
+                           name="email" 
+                           id="email" 
+                           class="input input-bordered w-full" 
+                           placeholder="请输入您的邮箱地址"
+                           required>
+                    {% if form.email.errors %}
+                        <label class="label">
+                            <span class="label-text-alt text-error">{{ form.email.errors[0] }}</span>
+                        </label>
+                    {% endif %}
+                </div>
+                
+                <!-- 密码 -->
+                <div class="form-control mb-6">
+                    <label class="label" for="password">
+                        <span class="label-text">密码</span>
+                    </label>
+                    <input type="password" 
+                           name="password" 
+                           id="password" 
+                           class="input input-bordered w-full" 
+                           placeholder="请输入密码"
+                           required>
+                    {% if form.password.errors %}
+                        <label class="label">
+                            <span class="label-text-alt text-error">{{ form.password.errors[0] }}</span>
+                        </label>
+                    {% endif %}
+                </div>
+                
+                <!-- 记住我 -->
+                <div class="form-control mb-6">
+                    <label class="cursor-pointer label">
+                        <span class="label-text">记住我</span>
+                        <input type="checkbox" name="remember" class="checkbox checkbox-primary">
+                    </label>
+                </div>
+                
+                <!-- 提交按钮 -->
+                <div class="form-control mt-6">
+                    <button type="submit" class="btn btn-primary w-full">
+                        <i class="fas fa-sign-in-alt mr-2"></i>登录
+                    </button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-6">
+                <p class="text-gray-600">
+                    还没有账户？ 
+                    <a href="{{ url_for('register') }}" class="text-primary hover:underline">立即注册</a>
+                </p>
+                <p class="text-gray-600 mt-2">
+                    <a href="#" class="text-primary hover:underline">忘记密码？</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

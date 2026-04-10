@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}用户注册 - 古诗词问答系统{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center">
+    <div class="card w-full max-w-md bg-white card-shadow">
+        <div class="card-body">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold">用户注册</h2>
+                <p class="text-gray-600">创建您的古诗词问答系统账户</p>
+            </div>
+            
+            <form method="POST" action="{{ url_for('register') }}">
+                {{ form.hidden_tag() }}
+                
+                <!-- 邮箱 -->
+                <div class="form-control mb-4">
+                    <label class="label" for="email">
+                        <span class="label-text">邮箱地址</span>
+                    </label>
+                    <input type="email" 
+                           name="email" 
+                           id="email" 
+                           class="input input-bordered w-full" 
+                           placeholder="请输入您的邮箱地址"
+                           required>
+                    {% if form.email.errors %}
+                        <label class="label">
+                            <span class="label-text-alt text-error">{{ form.email.errors[0] }}</span>
+                        </label>
+                    {% endif %}
+                </div>
+                
+                <!-- 用户名 -->
+                <div class="form-control mb-4">
+                    <label class="label" for="username">
+                        <span class="label-text">用户名</span>
+                    </label>
+                    <input type="text" 
+                           name="username" 
+                           id="username" 
+                           class="input input-bordered w-full" 
+                           placeholder="请输入用户名（3-20个字符）"
+                           required>
+                    {% if form.username.errors %}
+                        <label class="label">
+                            <span class="label-text-alt text-error">{{ form.username.errors[0] }}</span>
+                        </label>
+                    {% endif %}
+                </div>
+                
+                <!-- 密码 -->
+                <div class="form-control mb-4">
+                    <label class="label" for="password">
+                        <span class="label-text">密码</span>
+                    </label>
+                    <input type="password" 
+                           name="password" 
+                           id="password" 
+                           class="input input-bordered w-full" 
+                           placeholder="请输入密码（6-20个字符）"
+                           required>
+                    {% if form.password.errors %}
+                        <label class="label">
+                            <span class="label-text-alt text-error">{{ form.password.errors[0] }}</span>
+                        </label>
+                    {% endif %}
+                </div>
+                
+                <!-- 确认密码 -->
+                <div class="form-control mb-4">
+                    <label class="label" for="password_confirm">
+                        <span class="label-text">确认密码</span>
+                    </label>
+                    <input type="password" 
+                           name="password_confirm" 
+                           id="password_confirm" 
+                           class="input input-bordered w-full" 
+                           placeholder="请再次输入密码"
+                           required>
+                    {% if form.password_confirm.errors %}
+                        <label class="label">
+                            <span class="label-text-alt text-error">{{ form.password_confirm.errors[0] }}</span>
+                        </label>
+                    {% endif %}
+                </div>
+                
+                <!-- 验证码 -->
+                <div class="form-control mb-6">
+                    <label class="label" for="captcha">
+                        <span class="label-text">验证码</span>
+                    </label>
+                    <div class="flex space-x-2">
+                        <input type="text" 
+                               name="captcha" 
+                               id="captcha" 
+                               class="input input-bordered flex-1" 
+                               placeholder="请输入验证码"
+                               required>
+                        <button type="button" 
+                                class="btn btn-outline" 
+                                onclick="sendCaptcha()">
+                            发送验证码
+                        </button>
+                    </div>
+                    {% if form.captcha.errors %}
+                        <label class="label">
+                            <span class="label-text-alt text-error">{{ form.captcha.errors[0] }}</span>
+                        </label>
+                    {% endif %}
+                </div>
+                
+                <!-- 提交按钮 -->
+                <div class="form-control mt-6">
+                    <button type="submit" class="btn btn-primary w-full">
+                        <i class="fas fa-user-plus mr-2"></i>注册账户
+                    </button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-6">
+                <p class="text-gray-600">
+                    已有账户？ 
+                    <a href="{{ url_for('login') }}" class="text-primary hover:underline">立即登录</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function sendCaptcha() {
+    const email = document.getElementById('email').value;
+    if (!email) {
+        alert('请先输入邮箱地址');
+        return;
+    }
+    
+    // 模拟发送验证码
+    const btn = event.target;
+    btn.disabled = true;
+    btn.innerHTML = '发送中...';
+    
+    setTimeout(() => {
+        btn.innerHTML = '已发送';
+        alert('验证码已发送到您的邮箱');
+        
+        // 60秒后重新启用
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = '发送验证码';
+        }, 60000);
+    }, 2000);
+}
+</script>
+{% endblock %}
